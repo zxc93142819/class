@@ -9,13 +9,15 @@ public class Player : MonoBehaviour
     [SerializeField] float TuringTime = 10f;
     [SerializeField] float JumpSpeed = 10f;
     [SerializeField] float JumpTime = 90f;
-    [SerializeField] Vector3[] RotateVector = new Vector3[] { new Vector3(0f, 9f, 0f), new Vector3(0f, -9f, 0f) };
     [SerializeField] Rigidbody rb;
     [SerializeField] Animator anim;
+    Vector3[] RotateVector = new Vector3[] { new Vector3(0f, 9f, 0f), new Vector3(0f, -9f, 0f) };
     float TuringAddTime = 90f;//轉動冷卻時間
     float JumpAddTime = 90f;//同上
     bool isJump = false;
-    bool isRotate = false;
+    bool isCorner = true;
+    bool isGameStart = true;
+    int RotateCounter = 0;
     int RotateCode = -1;
     void Start()
     {
@@ -26,24 +28,66 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("Run", false);
+        
         MoveController();
-        RotateController();
+        if (!isGameStart)
+        {
+            RotateController();
+        }
         JumpController();
     }
     void MoveController()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward*Time.deltaTime*MoveSpeed);
             anim.SetBool("Run", true);
         }
+        if (isGameStart)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                if(isCorner && RotateCode == 1)
+                {
+                    CornerRotate();
+                }
+                else
+                {
+                    transform.Translate(Vector3.left * Time.deltaTime * MoveSpeed);
+                    anim.SetBool("Run", true);
+                }
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                if (isCorner && RotateCode == 0)
+                {
+                    CornerRotate();
+                }
+                else
+                {
+                    transform.Translate(Vector3.right * Time.deltaTime * MoveSpeed);
+                    anim.SetBool("Run", true);
+                }
+            }
+        }
+    }
+    void CornerRotate()
+    {
+        if (RotateCounter != 10)
+        {
+            transform.Rotate(RotateVector[RotateCode]);
+            RotateCounter++;
+        }
         else
         {
-            anim.SetBool("Run", false);
+            RotateCounter = 0;
+            isCorner = false;
         }
     }
     void RotateController()
     {
+        
         if(TuringAddTime>= 10f)
         {
             TuringAddTime = 10f;

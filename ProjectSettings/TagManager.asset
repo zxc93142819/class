@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - New tag
+  - Normal_Road
+  - Corner_Road_Right
+  - Corner_Road_left
   layers:
   - Default
   - TransparentFX
