@@ -2,42 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Road : MonoBehaviour
+public class Road : MonoBehaviour//three kinds of Road straight ,right ,left
 {
-    GameObject player;
-    float dis;
-    bool isTread = false;
-    bool isSpawn = false;
+    public Collider bound;
+    public GameObject player;
+    float time;
+    bool isDead = false;
     // Start is called before the first frame update
     void Start()
     {
-        player = transform.parent.GetComponent<RoadManager>().Player;
     }
 
     // Update is called once per frame
     void Update()
     {
-        dis = Vector3.Distance(transform.position, player.transform.position);
-        if(gameObject&&isTread&&dis > 5)
+        if (isDead)
         {
-            transform.parent.GetComponent<RoadManager>().SpawnRoad(transform.position+new Vector3(0,0,5));
-            isTread = false;
-            isSpawn = true;
+            Die();
         }
-        else
-        {
-            if (isSpawn&&dis > 10)
-            {
-                Destroy(gameObject);
-            }
-        }
-
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
         {
-            isTread = true;
+            Copy();
+        }
+    }
+    void Copy()
+    {
+        time = Time.time+5f;
+        Vector3 pos;
+        Debug.Log(player.GetComponent<Player>().isX);
+        if (!player.GetComponent<Player>().isX)
+        {
+            float length = bound.bounds.extents.z * 2;
+            pos = transform.position + new Vector3(0, 0, length);
+        }
+        else
+        {
+            float length = bound.bounds.extents.x * 2;
+            pos = transform.position + new Vector3(length,0, 0);
+        }
+        Instantiate(gameObject, pos, transform.rotation);
+        //isDead = true;*********************//if test over you should turn on
+    }
+    void Die()
+    {
+        if(Time.time > time)
+        {
+            Destroy(gameObject);
+            //isDead = false;
         }
     }
 }

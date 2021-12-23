@@ -15,10 +15,12 @@ public class Player : MonoBehaviour
     float TuringAddTime = 90f;//轉動冷卻時間
     float JumpAddTime = 90f;//同上
     bool isJump = false;
-    bool isCorner = true;
-    bool isGameStart = true;
+    public bool isCorner = false;
+    public bool isGameStart = false;
+    public bool startTurn = false;
     int RotateCounter = 0;
-    int RotateCode = -1;
+    public int RotateCode = -1;
+    public bool isX = false;//origin Z
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,67 +48,81 @@ public class Player : MonoBehaviour
         }
         if (isGameStart)
         {
-            if (Input.GetKey(KeyCode.A))
+            if (startTurn)
             {
-                if(isCorner && RotateCode == 1)
-                {
-                    CornerRotate();
-                }
-                else
-                {
-                    transform.Translate(Vector3.left * Time.deltaTime * MoveSpeed);
-                    anim.SetBool("Run", true);
-                }
+                CornerRotate();
             }
-            if (Input.GetKey(KeyCode.D))
+            else
             {
-                if (isCorner && RotateCode == 0)
+                if (Input.GetKey(KeyCode.A))
                 {
-                    CornerRotate();
+                    if (isCorner && RotateCode == 1)
+                    {
+                        CornerRotate();
+                        startTurn = true;
+                    }
+                    else
+                    {
+                        transform.Translate(Vector3.left * Time.deltaTime * MoveSpeed);
+                        anim.SetBool("Run", true);
+                    }
                 }
-                else
+                if (Input.GetKey(KeyCode.D))
                 {
-                    transform.Translate(Vector3.right * Time.deltaTime * MoveSpeed);
-                    anim.SetBool("Run", true);
+                    if (isCorner && RotateCode == 0)
+                    {
+                        CornerRotate();
+                        startTurn = true;
+                    }
+                    else
+                    {
+                        transform.Translate(Vector3.right * Time.deltaTime * MoveSpeed);
+                        anim.SetBool("Run", true);
+                    }
                 }
             }
         }
     }
     void CornerRotate()
     {
-        if (RotateCounter != 10)
+        if (RotateCounter == 0)
         {
+            if (isX)
+            {
+                isX = false;
+            }
+            else
+            {
+                isX = true;
+            }
             transform.Rotate(RotateVector[RotateCode]);
             RotateCounter++;
         }
         else
         {
-            RotateCounter = 0;
-            isCorner = false;
+            if (RotateCounter != 10)
+            {
+                transform.Rotate(RotateVector[RotateCode]);
+                RotateCounter++;
+            }
+            else
+            {
+                RotateCounter = 0;
+                isCorner = false;
+                startTurn = false;
+            }
         }
     }
     void RotateController()
     {
-        
-        if(TuringAddTime>= 10f)
+        if (Input.GetKey(KeyCode.A))
         {
-            TuringAddTime = 10f;
+            transform.Rotate(new Vector3(0f,-1f,0f));
         }
-        else
+        if (Input.GetKey(KeyCode.D))
         {
-            TuringAddTime += 1f;
-            transform.Rotate(RotateVector[RotateCode]);
+            transform.Rotate(new Vector3(0f, 1f, 0f));
         }
-        if (Input.GetKey(KeyCode.D)&&TuringAddTime >= 10f)
-        {
-            RotateCode = 0;
-            TuringAddTime = 0f;
-        }
-        else if (Input.GetKey(KeyCode.A) && TuringAddTime >=10f)
-        {
-            RotateCode = 1;
-            TuringAddTime = 0f;
-        }//wait for fixing...
     }
     void JumpController()
     {

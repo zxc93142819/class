@@ -7,6 +7,7 @@ TagManager:
   - Normal_Road
   - Corner_Road_Right
   - Corner_Road_left
+  - DieTrigger
   layers:
   - Default
   - TransparentFX
