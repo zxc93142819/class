@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     float TuringAddTime = 90f;//轉動冷卻時間
     float JumpAddTime = 90f;//同上
     bool isJump = false;
+    public bool isRight = true;
     public bool isCorner = false;
     public bool isGameStart = false;
     public bool startTurn = false;

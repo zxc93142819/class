@@ -14,12 +14,15 @@ public class CornerRoad : MonoBehaviour
         if (other.tag == "Player")
         {
 
+            Debug.Log("POP!!");
             if (gameObject.tag == "Corner_Road_Right")
             {
+                player.GetComponent<Player>().isRight = true;
                 player.GetComponent<Player>().isCorner = true;
                 player.GetComponent<Player>().RotateCode = 0;
             }else if(gameObject.tag == "Corner_Road_Left")
             {
+                player.GetComponent<Player>().isRight = false;
                 player.GetComponent<Player>().isCorner = true;
                 player.GetComponent<Player>().RotateCode = 1;
             }

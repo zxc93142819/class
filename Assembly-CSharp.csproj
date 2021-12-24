@@ -58,10 +58,12 @@
     <Compile Include="Assets\Scripts\VikingController.cs" />
     <Compile Include="Assets\Scripts\Road.cs" />
     <Compile Include="Assets\Scripts\ScenSwitcher.cs" />
-    <Compile Include="Assets\Scripts\RoadManager.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\StartGame.cs" />
     <Compile Include="Assets\Scripts\CornerRoad.cs" />
+    <Compile Include="Assets\Scripts\RoadManager.cs" />
+    <Compile Include="Assets\Scripts\StartGame.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\BlackHole.cs" />
+    <Compile Include="Assets\Scripts\Obstacle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\Fonts\OFL.txt" />

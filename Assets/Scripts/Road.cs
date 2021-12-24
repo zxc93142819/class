@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Road : MonoBehaviour//three kinds of Road straight ,right ,left
 {
+    public GameObject[] rm;
     public Collider bound;
     public GameObject player;
     float time;
@@ -32,21 +33,39 @@ public class Road : MonoBehaviour//three kinds of Road straight ,right ,left
         }
     }
     void Copy()
-    {
+    {//Use RoadManager to Maintain the multi Roads
+        int r = Random.Range(0,rm.Length);
+        GameObject go = rm[r];
         time = Time.time+5f;
         Vector3 pos;
         Debug.Log(player.GetComponent<Player>().isX);
         if (!player.GetComponent<Player>().isX)
         {
-            float length = bound.bounds.extents.z * 2;
-            pos = transform.position + new Vector3(0, 0, length);
+            if (player.GetComponent<Player>().isRight)
+            {
+                float length = bound.bounds.extents.z * 2;
+                pos = transform.position + new Vector3(0, 0, length);
+            }
+            else
+            {
+                float length = bound.bounds.extents.z * 2;
+                pos = transform.position + new Vector3(0, 0, -length);
+            }
         }
         else
         {
-            float length = bound.bounds.extents.x * 2;
-            pos = transform.position + new Vector3(length,0, 0);
+            if (player.GetComponent<Player>().isRight)
+            {
+                float length = bound.bounds.extents.x * 2;
+                pos = transform.position + new Vector3(length, 0, 0);
+            }
+            else
+            {
+                float length = bound.bounds.extents.x * 2;
+                pos = transform.position + new Vector3(-length, 0, 0);
+            }
         }
-        Instantiate(gameObject, pos, transform.rotation);
+        Instantiate(go, pos, transform.rotation);
         //isDead = true;*********************//if test over you should turn on
     }
     void Die()
