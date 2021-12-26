@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CornerRoad : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
     private void Start()
     {
+        player = transform.parent.parent.GetComponent<RoadManager>().player;
     }
     private void OnTriggerEnter(Collider other)
     {

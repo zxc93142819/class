@@ -9,6 +9,9 @@ public class Obstacle : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("YOu Die!");
+            Time.timeScale = 0;
+
+            other.GetComponent<Animator>().enabled = false;
         }
     }
 }

@@ -26,11 +26,21 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (transform.parent.GetComponent<StartGame>().isGamePause)
+        {
+            return;
+        }
+        if (!isGameStart)
+        {
+            isGameStart = transform.parent.GetComponent<StartGame>().isGameStart;
+            return;
+        }
         anim.SetBool("Run", false);
         
         MoveController();

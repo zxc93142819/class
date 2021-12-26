@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class RoadManager : MonoBehaviour
 {
-    //int count = 0;
-    //public GameObject Player;
-    //[SerializeField] GameObject[] RoadPreFabs;
-    //public void SpawnRoad(Vector3 NewPos)
-    //{
-    //    int r =Random.Range(0, RoadPreFabs.Length);
-    //    GameObject Road = Instantiate(RoadPreFabs[r],transform);
-    //    Road.transform.position = NewPos;
-    //}
+    public GameObject[] rm;
+    public GameObject player;
+    public int CornerCount = 0;
+    public int Obstacle = 0;
+    public float nowRotate = 0;
+    public bool isGameStart = false;
+    public bool isGamePause = false;
+    public GameObject[] rotate;
+    private void Update()
+    {
+        if (isGamePause)
+        {
+            isGamePause = transform.parent.GetComponent<StartGame>().isGamePause;
+        }
+        if (!isGameStart)
+        {
+            isGameStart = transform.parent.GetComponent<StartGame>().isGameStart;
+        }
+    }
 }

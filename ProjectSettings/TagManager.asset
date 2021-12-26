@@ -9,6 +9,7 @@ TagManager:
   - Corner_Road_left
   - DieTrigger
   - Corner_Road_Left
+  - Obstacle
   layers:
   - Default
   - TransparentFX

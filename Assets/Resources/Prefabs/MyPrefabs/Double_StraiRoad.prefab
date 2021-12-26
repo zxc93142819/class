@@ -143,9 +143,10 @@ GameObject:
   - component: {fileID: 4681604490093975218}
   - component: {fileID: 4681604490093975219}
   - component: {fileID: 641297354}
+  - component: {fileID: 9144779109482863936}
   m_Layer: 0
   m_Name: Double_StraiRoad
-  m_TagString: Untagged
+  m_TagString: Normal_Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,7 +184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bound: {fileID: 1968784260}
-  player: {fileID: 0}
 --- !u!54 &641297354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -200,6 +200,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9144779109482863936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681604490093975229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b73f90bd2972044af65d331bc195b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6635192132446658869
 GameObject:
   m_ObjectHideFlags: 0

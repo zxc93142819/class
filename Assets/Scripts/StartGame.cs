@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-
     public GameObject player;
-    private void OnTriggerEnter(Collider other)
+    public bool isGameStart = false;
+    public bool isGamePause = false;
+    [SerializeField] GameObject GameStartHint;
+    private void Update()
     {
-        if(other.tag == "Player")
+        if (Input.GetKey(KeyCode.W)&&!isGameStart&&!isGamePause)
         {
-            player.GetComponent<Player>().isGameStart = true;
-            player.transform.eulerAngles = new Vector3(0f,0f,0f);
-            player.transform.position = new Vector3(0f,1f,6f);
+            GameStartHint.SetActive(false);
+            isGameStart = true;
+            player.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            player.transform.position = new Vector3(0f, 1f, 6f);
         }
     }
 }

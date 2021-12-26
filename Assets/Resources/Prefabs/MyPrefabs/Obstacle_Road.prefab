@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4783381907561482629}
   - component: {fileID: 4783381907561482630}
+  - component: {fileID: 2489410727087874692}
   m_Layer: 0
   m_Name: Obstacle_Road
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +50,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2489410727087874692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783381907561482628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b73f90bd2972044af65d331bc195b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4783381906280225960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,19 +145,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b266975e6b734a74c88c43e68729a257, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b266975e6b734a74c88c43e68729a257, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b266975e6b734a74c88c43e68729a257, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b266975e6b734a74c88c43e68729a257, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.68
+      value: -2.74
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b266975e6b734a74c88c43e68729a257, type: 3}
       propertyPath: m_LocalPosition.y
