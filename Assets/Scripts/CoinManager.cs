@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class CoinManager : MonoBehaviour
 {
     public GameObject Coin;
-    bool coinSet1, coinSet2, coinSet3, coinSet4, coinSet5;
+    bool coinSet1, coinSet2, coinSet3, coinSet4, coinSet5, coinSet6, coinSet7, coinSet8, coinSet9
+        , coinSet10, coinSet11, coinSet12, coinSet13;
     public int coins = 0;
     private void Start()
     {
@@ -15,6 +16,14 @@ public class CoinManager : MonoBehaviour
         coinSet3 = false;
         coinSet4 = false;
         coinSet5 = false;
+        coinSet6 = false;
+        coinSet7 = false;
+        coinSet8 = false;
+        coinSet9 = false;
+        coinSet10 = false;
+        coinSet11 = false;
+        coinSet12 = false;
+        coinSet13 = false;
         coins = 0;
     }
     // Update is called once per frame
@@ -45,6 +54,46 @@ public class CoinManager : MonoBehaviour
         {
             Time.timeScale = 2.5f;
             coinSet5 = true;
+        }
+        if (coins > 300 && !coinSet6)
+        {
+            Time.timeScale = 2.7f;
+            coinSet6 = true;
+        }
+        if (coins > 400 && !coinSet7)
+        {
+            Time.timeScale = 3.0f;
+            coinSet7 = true;
+        }
+        if (coins > 500 && !coinSet8)
+        {
+            Time.timeScale = 3.3f;
+            coinSet8 = true;
+        }
+        if (coins > 600 && !coinSet9)
+        {
+            Time.timeScale = 3.6f;
+            coinSet9 = true;
+        }
+        if (coins > 700 && !coinSet10)
+        {
+            Time.timeScale = 3.9f;
+            coinSet10 = true;
+        }
+        if (coins > 800 && !coinSet11)
+        {
+            Time.timeScale = 4.2f;
+            coinSet11 = true;
+        }
+        if (coins > 900 && !coinSet12)
+        {
+            Time.timeScale = 4.5f;
+            coinSet12 = true;
+        }
+        if (coins > 1000 && !coinSet13)
+        {
+            Time.timeScale = 5f;
+            coinSet13 = true;
         }
         Coin.GetComponent<Text>().text = coins + "";
     }

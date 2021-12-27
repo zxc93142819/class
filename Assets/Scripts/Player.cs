@@ -8,25 +8,30 @@ public class Player : MonoBehaviour
     [SerializeField] float MoveSpeed = 5f;
     [SerializeField] float TuringTime = 10f;
     [SerializeField] float JumpSpeed = 10f;
-    [SerializeField] float JumpTime = 90f;
+    [SerializeField] float JumpTime = 5f;
     [SerializeField] Rigidbody rb;
     [SerializeField] Animator anim;
     public int dieBecause = -1;//0 = fall , 1 = hit obstacle, 2 = caught by enemy, -1 = none
     Vector3[] RotateVector = new Vector3[] { new Vector3(0f, 9f, 0f), new Vector3(0f, -9f, 0f) };
     float TuringAddTime = 90f;//轉動冷卻時間
-    float JumpAddTime = 90f;//同上
+    [SerializeField]float JumpAddTime = 5f;//同上
     bool isJump = false;
     public bool isRight = true;
     public bool isCorner = false;
     public bool isGameStart = false;
     public bool startTurn = false;
     int RotateCounter = 0;
+    public float margin = 0.01f;
     public int RotateCode = -1;
     public bool isX = false;//origin Z
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        JumpSpeed = 400f;
+        JumpAddTime = 1f;
+        JumpTime = 1f;
+        margin = 0.1f;
     }
 
     // Update is called once per frame
@@ -143,9 +148,13 @@ public class Player : MonoBehaviour
             transform.Rotate(new Vector3(0f, 1f, 0f));
         }
     }
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, margin);
+    }
     void JumpController()
     {
-        if(JumpAddTime >= JumpTime / 2)
+        if(IsGrounded())
         {
             anim.SetBool("Jump", false);
         }
@@ -155,9 +164,9 @@ public class Player : MonoBehaviour
         }//maybe use collider to make it real
         else
         {
-            JumpAddTime += 0.1f;
+            JumpAddTime += Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.Space)&&JumpAddTime >= JumpTime)
+        if (Input.GetKey(KeyCode.Space) &&IsGrounded()&& JumpAddTime >= JumpTime)
         {
             rb.AddForce(transform.up * JumpSpeed);
             anim.SetBool("Jump", true);

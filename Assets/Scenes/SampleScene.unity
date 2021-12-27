@@ -757,6 +757,7 @@ MonoBehaviour:
   Obstacle: {fileID: 370303979}
   fall: {fileID: 1044580899}
   caught: {fileID: 2899712}
+  Pause: {fileID: 1960612436}
 --- !u!1 &322806211
 GameObject:
   m_ObjectHideFlags: 0
@@ -6071,6 +6072,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 355581899}
     m_Modifications:
+    - target: {fileID: 8728006950587370142, guid: d24a092d172708e43b6f9e42d3c4a936, type: 3}
+      propertyPath: JumpSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8728006951094702020, guid: d24a092d172708e43b6f9e42d3c4a936, type: 3}
       propertyPath: m_LocalPosition.y
       value: 3.08

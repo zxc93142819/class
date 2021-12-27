@@ -13,6 +13,7 @@ public class Die : MonoBehaviour
     [SerializeField] GameObject Obstacle;
     [SerializeField] GameObject fall;
     [SerializeField] GameObject caught;
+    [SerializeField] GameObject Pause;
 
     // Start is called before the first frame update
     void Start()//0 = fall , 1 = hit obstacle, 2 = caught by enemy, -1 = none
@@ -38,8 +39,10 @@ public class Die : MonoBehaviour
             {
                 result += (scoreTemp % 10) * scale;
                 scoreTemp /= 10;
-                scale *= 10;
+                scale *= 17;
             }
+            Pause.GetComponent<Button>().interactable = false;
+            Pause.GetComponent<Button>().enabled = false;
 
             score.GetComponent<Text>().text = result + "";
             fall.SetActive(true);
@@ -52,8 +55,10 @@ public class Die : MonoBehaviour
             {
                 result += (scoreTemp % 10) * scale;
                 scoreTemp /= 10;
-                scale *= 10;
+                scale *= 17;
             }
+            Pause.GetComponent<Button>().interactable = false;
+            Pause.GetComponent<Button>().enabled = false;
 
             score.GetComponent<Text>().text = result + "";
             Obstacle.SetActive(true);
@@ -67,8 +72,10 @@ public class Die : MonoBehaviour
             {
                 result += (scoreTemp % 10) * scale;
                 scoreTemp /= 10;
-                scale *= 10;
+                scale *= 17;
             }
+            Pause.GetComponent<Button>().interactable = false;
+            Pause.GetComponent<Button>().enabled = false;
 
             score.GetComponent<Text>().text = result + "";
             caught.SetActive(true);

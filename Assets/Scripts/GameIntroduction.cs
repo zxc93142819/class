@@ -9,9 +9,11 @@ public class GameIntroduction : MonoBehaviour
     [SerializeField] GameObject menu;
     [SerializeField] GameObject landScape;
     [SerializeField] GameObject GameStartHint;
+    bool isPressed = false;
     // Start is called before the first frame update
     void Start()
     {
+        isPressed = false;
         Time.timeScale = 0;
         landScape.GetComponent<StartGame>().enabled = false;
     }
@@ -19,8 +21,9 @@ public class GameIntroduction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape)&&!isPressed)
         {
+            isPressed = true;
             Time.timeScale = 1;
             landScape.GetComponent<StartGame>().enabled = true;
             intro.SetActive(false);
