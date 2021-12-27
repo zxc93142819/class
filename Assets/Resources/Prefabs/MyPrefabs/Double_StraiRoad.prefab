@@ -70,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1664917082676559045}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -4.07, y: 0, z: 9.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 4681604490093975218}
   m_RootOrder: 4
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 3191088584451085910}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 2.96, y: 0, z: 9.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 4681604490093975218}
   m_RootOrder: 3
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3c0de7fc3bc7b48b4f00b99926f428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Coin: {fileID: 1473697940102909722, guid: 7a81fb02ce8d4a144a1db21ab1955604, type: 3}
   bound: {fileID: 1968784260}
 --- !u!54 &641297354
 Rigidbody:
@@ -212,6 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b73f90bd2972044af65d331bc195b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 50
+  delay: 0
+  IsGameStart: 0
+  isGamePause: 0
 --- !u!1 &6635192132446658869
 GameObject:
   m_ObjectHideFlags: 0

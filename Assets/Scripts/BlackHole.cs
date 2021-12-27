@@ -10,6 +10,7 @@ public class BlackHole : MonoBehaviour
         {
             Debug.Log("YOu Die!");
             Time.timeScale = 0;
+            other.GetComponent<Player>().dieBecause = 0;
             other.GetComponent<Animator>().enabled = false;
         }
     }

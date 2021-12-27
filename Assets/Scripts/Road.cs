@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Road : MonoBehaviour//three kinds of Road straight ,right ,left
 {
+    [SerializeField] GameObject Coin;
     public Collider bound;
     GameObject player;
     RoadManager RM;
@@ -11,17 +12,13 @@ public class Road : MonoBehaviour//three kinds of Road straight ,right ,left
     void Start()
     {
 
-        Debug.Log("parent: "+transform.parent+" Tag: "+transform.parent.tag);
-        Debug.Log("parent_Parant : "+transform.parent.parent+ " Tag: "+transform.parent.parent.tag);
         if (transform.parent.tag == "Corner_Road_Left"||transform.parent.tag == "Corner_Road_Right"||transform.parent.tag == "Obstacle")
         {
-            Debug.Log("A");
             RM = transform.parent.parent.GetComponent<RoadManager>();
             player = transform.parent.parent.GetComponent<RoadManager>().player;
         }
         else
         {
-            Debug.Log("B");
             RM = transform.parent.GetComponent<RoadManager>();
             player = transform.parent.GetComponent<RoadManager>().player;
         }
@@ -78,11 +75,12 @@ public class Road : MonoBehaviour//three kinds of Road straight ,right ,left
         {
             RM.Obstacle = 0;
         }
-
+        if(r == 0&&transform.parent.tag!= "Corner_Road_Right" && transform.parent.tag != "Corner_Road_Left")
+        {
+            CoinGenerate(player.transform.rotation.eulerAngles.y);
+        }
 
         Vector3 pos;
-        Debug.Log(player.GetComponent<Player>().isX);
-        Debug.Log(player.transform.rotation.eulerAngles.y);
         float nowAngle = player.transform.rotation.eulerAngles.y;
         if (nowAngle >= -10 && nowAngle <= 10)//0
         {
@@ -321,5 +319,108 @@ public class Road : MonoBehaviour//three kinds of Road straight ,right ,left
         }
 
     }
-   
+     void CoinGenerate(float diretion)
+    {
+        float control=4.5f;
+        float length,width;
+        if (diretion >= -10 && diretion <= 10)//0
+        {
+            Debug.Log("A");
+            length = bound.bounds.extents.z * 2;//ªø
+            Debug.Log("Lenght : "+length);
+            width = bound.bounds.extents.x;
+            for(int i = (int)length/2; i < length; i+=2)
+            {
+                int isGen = Random.Range(0,2);
+                int pos = Random.Range((int)(-width+control), (int)(width-control));
+                if(isGen == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    Transform temp = transform;
+                    while (temp.parent.name != "landscapes")
+                    {
+                        temp = temp.parent;
+                    }
+                    Instantiate(Coin, transform.position + new Vector3(pos,2,i+(int)((float)length*1.2)), Coin.transform.rotation, temp.parent.GetChild(1)) ;
+                }
+            }
+        }
+        else if (diretion >= 260 && diretion <= 290)//270
+        {
+            Debug.Log("B");
+            length = bound.bounds.extents.x * 2;
+            width = bound.bounds.extents.z;
+            for (int i = (int)length / 2; i < length; i += 2)
+            {
+                int isGen = Random.Range(0, 2);
+                int pos = Random.Range((int)(-width + control), (int)(width - control));
+                if (isGen == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    Transform temp = transform;
+                    while (temp.parent.name != "landscapes")
+                    {
+                        temp = temp.parent;
+                    }
+                    Instantiate(Coin, transform.position + new Vector3(-(i + (int)((float)length * 1.2)), 2, pos),Coin.transform.rotation, temp.parent.GetChild(1));
+                }
+            }
+        }
+        else if (diretion >= 170 && diretion <= 190)
+        {
+            Debug.Log("C");
+            length = bound.bounds.extents.z * 2;
+            width = bound.bounds.extents.x * 2;
+            for (int i = (int)length / 2; i < length; i += 2)
+            {
+                int isGen = Random.Range(0, 2);
+                int pos = Random.Range((int)(-width + control), (int)(width - control));
+                if (isGen == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    Transform temp = transform;
+                    while (temp.parent.name != "landscapes")
+                    {
+                        temp = temp.parent;
+                    }
+                    Instantiate(Coin, transform.position + new Vector3(pos, 2, -(i + (int)((float)length * 1.2))), Coin.transform.rotation, temp.parent.GetChild(1));
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("D");
+            length = bound.bounds.extents.x * 2;
+            width = bound.bounds.extents.z * 2;
+            for (int i = (int)length / 2; i < length; i += 2)
+            {
+                int isGen = Random.Range(0, 2);
+                int pos = Random.Range((int)(-width + control), (int)(width - control));
+                if (isGen == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    Transform temp = transform;
+                    while (temp.parent.name != "landscapes")
+                    {
+                        temp = temp.parent;
+                    }
+                    Instantiate(Coin, transform.position + new Vector3(i + (int)((float)length * 1.2), 2,pos), Coin.transform.rotation, temp.parent.GetChild(1));
+                }
+            }
+        }
+        //Instantiate(Coin, transform);
+
+    }
 }

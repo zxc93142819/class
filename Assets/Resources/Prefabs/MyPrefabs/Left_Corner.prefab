@@ -46,6 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b73f90bd2972044af65d331bc195b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 50
+  delay: 0
+  IsGameStart: 0
+  isGamePause: 0
 --- !u!1001 &327733527586392045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +134,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1059937799728348443, guid: 5ff2994acfb716a4bb85112010716a82, type: 3}
   m_PrefabInstance: {fileID: 327733527586392045}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5172376942680201895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4849161309580303690, guid: 5ff2994acfb716a4bb85112010716a82, type: 3}
+  m_PrefabInstance: {fileID: 327733527586392045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &6071639421870899765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7669ce23226baca419c88d9f94654366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: {fileID: 5172376942680201895}
 --- !u!1001 &6071639422120059703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,6 +281,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8992068921487893077, guid: d1e819bb0bd808b4ebfc014c74585c73, type: 3}
+      propertyPath: Coin
+      value: 
+      objectReference: {fileID: 1473697940102909722, guid: 7a81fb02ce8d4a144a1db21ab1955604, type: 3}
     - target: {fileID: 8992068921487893077, guid: d1e819bb0bd808b4ebfc014c74585c73, type: 3}
       propertyPath: player
       value: 

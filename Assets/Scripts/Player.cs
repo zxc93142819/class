@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] float JumpTime = 90f;
     [SerializeField] Rigidbody rb;
     [SerializeField] Animator anim;
+    public int dieBecause = -1;//0 = fall , 1 = hit obstacle, 2 = caught by enemy, -1 = none
     Vector3[] RotateVector = new Vector3[] { new Vector3(0f, 9f, 0f), new Vector3(0f, -9f, 0f) };
     float TuringAddTime = 90f;//轉動冷卻時間
     float JumpAddTime = 90f;//同上
@@ -26,12 +27,19 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(dieBecause != -1) { return; }
+        if (transform.position.y < -10)
+        {
+            Debug.Log("YOu Die!");
+            Time.timeScale = 0;
+            dieBecause = 0;
+            GetComponent<Animator>().enabled = false;
+        }
         if (transform.parent.GetComponent<StartGame>().isGamePause)
         {
             return;
