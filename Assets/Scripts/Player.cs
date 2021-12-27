@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     float TuringAddTime = 90f;//轉動冷卻時間
     [SerializeField]float JumpAddTime = 5f;//同上
     bool isJump = false;
+    public AudioSource jumping_music;
     public bool isRight = true;
     public bool isCorner = false;
     public bool isGameStart = false;
@@ -80,6 +81,7 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.A))
                 {
+                    Debug.Log(isCorner + " " + RotateCode);
                     if (isCorner && RotateCode == 1)
                     {
                         CornerRotate();
@@ -157,6 +159,7 @@ public class Player : MonoBehaviour
         if(IsGrounded())
         {
             anim.SetBool("Jump", false);
+            jumping_music.enabled = false;
         }
         if (JumpAddTime >= JumpTime)
         {
@@ -168,6 +171,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space) &&IsGrounded()&& JumpAddTime >= JumpTime)
         {
+            jumping_music.enabled = true;
             rb.AddForce(transform.up * JumpSpeed);
             anim.SetBool("Jump", true);
             JumpAddTime = 0;

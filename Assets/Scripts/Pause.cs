@@ -19,7 +19,6 @@ public class Pause : MonoBehaviour
     }
     public void continue_button()
     {
-
         main.GetComponent<StartGame>().isGamePause = false;
         button.GetComponent<Button>().enabled = true;
         button.GetComponent<Button>().interactable = true;
